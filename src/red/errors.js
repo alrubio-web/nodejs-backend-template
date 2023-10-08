@@ -1,12 +1,16 @@
+// Importación del módulo de respuestas
 const respuesta = require('./respuestas');
 
-function errors (err, req, res, next){
-	console.error('[error', err);
+// Definición del middleware de manejo de errores
+function errors(err, req, res, next) {
+	console.error('[error]', err); // Logueo del error en la consola
 
-	const message = err.message || 'Error interno';
-	const status = err.statusCode || 500;
+	const message = err.message || 'Error interno'; // Mensaje de error
+	const status = err.statusCode || 500; // Código de estado HTTP
 
+	// Envío de la respuesta de error al cliente
 	respuesta.error(req, res, message, status);
 }
 
-module.exports= errors;
+// Exportación del middleware de manejo de errores
+module.exports = errors;
